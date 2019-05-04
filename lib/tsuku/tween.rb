@@ -34,6 +34,22 @@ module Tsuku
       advance_property_values
     end
 
+    def pause
+      @running = false
+    end
+
+    def resume
+      @running = true unless completed?
+    end
+
+    def reset
+      
+    end
+
+    def completed?
+      @elapsed_ms >= @duration_ms
+    end
+
     private
     
     def advance_property_values
