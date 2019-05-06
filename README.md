@@ -5,7 +5,7 @@ A tweening tool written in Ruby
 
 Add this line to your application's Gemfile:
 
-```ruby
+```
 gem 'tsuku'
 ```
 
@@ -19,17 +19,37 @@ Or install it yourself as:
 
 ## Usage
 
-First, create a `Tween` object. In this example, we tween the `x` and `y`
-properties of the player object over a span of 3000 milliseconds.
+The recommended way to use Tsuku is to interface with the `Tweener` class.
+First, make sure to call the `step` method in your main update loop. You will
+need to provide the number of milliseconds that have elapsed since the previous
+frame:
+
+```ruby
+def game_update_loop
+    ...
+    
+    Tweener.step(delta_ms)
+
+    ...
+end
+```
+
+Then use `add_tween` to create tweens as needed. For example, this tween changes
+the player's x and y coordinates over a span of 3000 milliseconds:
+
+```ruby
+Tweener.add_tween(player, { x: 10, y: 5 }, 3000)
+```
+
+Any tweens created with `Tweener` will start and be cleaned up automatically.
+If you need greater control, you can create a `Tween` manually like so:
 
 ```ruby
 @tween = Tsuku::Tween.new(player, { x: 10, y: 5 }, 3000)
 @tween.start
 ```
 
-Now in your game update loop, advance the tween by calling its `step` method.
-You will need to provide the number of milliseconds that have elapsed since the
-previous frame:
+Now in your game update loop, advance the tween by calling its `step` method:
 
 ```ruby
 @tween.step(delta_ms)

@@ -1,17 +1,16 @@
 module Tsuku
   class Tween
-    def initialize(target, final_property_values, duration_ms, easing: :linear)
+    def initialize(target, final_property_values, duration_ms, easing = :linear)
       @target = target
       @final_property_values = final_property_values
       @duration_ms = duration_ms
       @easing = easing
 
       @running = false
+      @elapsed_ms = 0.0
     end
     
     def start
-      @elapsed_ms = 0.0
-
       @initial_property_values = {}
 
       @final_property_values.each_key do |k|
@@ -43,7 +42,7 @@ module Tsuku
     end
 
     def reset
-      
+      @elapsed_ms = 0
     end
 
     def completed?
