@@ -50,10 +50,33 @@ RSpec.describe Tsuku::Tween do
     expect(target.x).to eq(5.5)
   end
 
+  it "advances correctly after being completed and reset" do
+    tween.start
+    tween.step(1000)
+
+    target.x = 0
+    tween.reset
+    tween.start
+    tween.step(500)
+    expect(target.x).to eq(5)
+  end
+
   it "tweens correctly when property value changes after tween initialization" do
     target.x = 50
     tween.start
     tween.step(1000)
     expect(target.x).to eq(10)
+  end
+
+  describe "#completed?" do
+    it "returns false when tween is not completed" do
+      expect(tween.completed?).to eq(false)
+    end
+    
+    it "returns true when tween is completed" do
+      tween.start
+      tween.step(1000)
+      expect(tween.completed?).to eq(true)
+    end
   end
 end
