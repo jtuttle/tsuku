@@ -17,6 +17,8 @@ module Tsuku
       tween.start
       
       @tweens << tween
+
+      tween
     end
 
     def step(delta_ms)
