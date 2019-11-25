@@ -1,4 +1,4 @@
-# Unreleased
+# 0.1.2
 
 * Tweener.add_tween returns the created tween
 
