@@ -21,6 +21,16 @@ module Tsuku
       tween
     end
 
+    def delete_tween(tween)
+      tween.pause
+
+      raise StandardError.new("Tween not found") unless @tweens.include?(tween)
+
+      @tweens.delete(tween)
+
+      @tweens
+    end
+
     def step(delta_ms)
       return if !@running
 
