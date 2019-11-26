@@ -1,3 +1,7 @@
+# Unreleased
+
+* Add ability to delete tween from Tweener
+
 # 0.1.2
 
 * Tweener.add_tween returns the created tween
